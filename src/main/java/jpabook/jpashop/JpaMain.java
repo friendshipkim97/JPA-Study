@@ -1,4 +1,6 @@
-package hellojpa;
+package jpabook.jpashop;
+
+import hellojpa.MemberTemp;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,16 +17,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        try{
-            MemberTemp memberTemp = new MemberTemp();
-            memberTemp.setUsername("C");
+        try {
 
-            System.out.println("==================");
-            em.persist(memberTemp);
-            System.out.println("member.getId() = " + memberTemp.getId());
-            System.out.println("==================");
             tx.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
