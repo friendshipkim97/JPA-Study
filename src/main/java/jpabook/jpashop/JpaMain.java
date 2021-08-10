@@ -1,6 +1,9 @@
 package jpabook.jpashop;
 
 import hellojpa.MemberTemp;
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
