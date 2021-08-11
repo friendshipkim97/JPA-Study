@@ -1,45 +1,36 @@
 package hellojpa;
 
+import jpabook.jpashop.domain.BaseEntity;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "MemberTemp")
-public class MemberTemp {
+public class MemberTemp extends BaseEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
     @Column(name = "USERNAME")
-    private String username;
+    private String name;
 
-    @Column(name = "TEAM_ID")
-    private String teamId;
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID", updatable = false, insertable = false)
+    private TeamTemp teamTemp;
 
-//    private Integer age;
-//
-//    @Enumerated(EnumType.STRING)
-//    private RoleType roleType;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date createdDate;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date lastModifiedDate;
-//
-//    private LocalDate testLocalDate;
-//    private LocalDateTime testLocalDataTime;
-//
-//    @Lob
-//    private String description;
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
-//    @Transient
-//    private int temp;
-
-    public MemberTemp() {
-    }
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT")
+    private List<Product> products = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,11 +40,27 @@ public class MemberTemp {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public TeamTemp getTeamTemp() {
+        return teamTemp;
+    }
+
+    public void setTeamTemp(TeamTemp teamTemp) {
+        this.teamTemp = teamTemp;
+    }
+
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
     }
 }

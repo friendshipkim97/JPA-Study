@@ -4,8 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Item {
+//@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity{
 
     @Id
     @GeneratedValue
@@ -15,6 +17,9 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categoryList = new ArrayList<>();
