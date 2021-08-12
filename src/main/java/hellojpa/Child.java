@@ -2,18 +2,19 @@ package hellojpa;
 
 import javax.persistence.*;
 
-//@Entity
-public class Locker {
+@Entity
+public class Child {
 
     @Id
     @GeneratedValue
-    @Column(name = "LOCKER_ID")
+    @Column(name = "CHILD_ID")
     private Long id;
 
     private String name;
 
-    @OneToOne(mappedBy = "locker")
-    private MemberTemp memberTemp;
+    @ManyToOne
+    @JoinColumn(name = "PARENT_ID")
+    private Parent parent;
 
     public Long getId() {
         return id;
@@ -29,5 +30,13 @@ public class Locker {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 }

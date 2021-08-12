@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(name = "MemberTemp")
-public class MemberTemp extends BaseEntity {
+public class MemberTemp{
 
     @Id
     @GeneratedValue
@@ -20,17 +20,36 @@ public class MemberTemp extends BaseEntity {
     @Column(name = "USERNAME")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID", updatable = false, insertable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TEAM_ID")
     private TeamTemp teamTemp;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
 
     @ManyToMany
     @JoinTable(name = "MEMBER_PRODUCT")
     private List<Product> products = new ArrayList<>();
+
+    //Period
+    @Embedded
+    private Period period;
+
+    //주소
+    @Embedded
+    private Address homeAddress;
+
+    //주소
+    @Embedded
+    @AttributeOverrides({@AttributeOverride(name = "city",
+    column = @Column(name = "WORK_CITY")),
+            @AttributeOverride(name = "street",
+                    column = @Column(name = "WORK_STREET")),
+            @AttributeOverride(name = "street",
+                    column = @Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
 
     public Long getId() {
         return id;
@@ -56,11 +75,11 @@ public class MemberTemp extends BaseEntity {
         this.teamTemp = teamTemp;
     }
 
-    public Locker getLocker() {
-        return locker;
-    }
-
-    public void setLocker(Locker locker) {
-        this.locker = locker;
-    }
+//    public Locker getLocker() {
+//        return locker;
+//    }
+//
+//    public void setLocker(Locker locker) {
+//        this.locker = locker;
+//    }
 }
