@@ -2,7 +2,7 @@ package hellojpa;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Movie extends ItemTemp {
 
     private String director;

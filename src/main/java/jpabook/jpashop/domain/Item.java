@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn
 public abstract class Item extends BaseEntity{
 
@@ -15,7 +15,9 @@ public abstract class Item extends BaseEntity{
     private Long id;
 
     private String name;
+
     private int price;
+
     private int stockQuantity;
 
     @OneToMany(mappedBy = "item")

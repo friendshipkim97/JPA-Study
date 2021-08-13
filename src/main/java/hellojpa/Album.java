@@ -2,7 +2,7 @@ package hellojpa;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Album extends ItemTemp {
 
     private String artist;
