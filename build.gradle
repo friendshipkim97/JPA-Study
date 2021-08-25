@@ -1,6 +1,9 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+
+	//querydsl 추가
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
 }
 
@@ -30,3 +33,5 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+

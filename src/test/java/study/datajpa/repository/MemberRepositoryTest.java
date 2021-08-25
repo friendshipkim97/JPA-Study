@@ -34,6 +34,8 @@ class MemberRepositoryTest {
     @PersistenceContext
     EntityManager em;
 
+    @Autowired MemberQueryRepository memberQueryRepository;
+
     @Test
     public void testMember() {
         Member member = new Member("memberA");
